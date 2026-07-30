@@ -1,5 +1,5 @@
-name: terrarium_app
-description: "A new Flutter project."
+name: terra_link
+description: "A Flutter mobile app for monitoring and controlling a terrarium ecosystem."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_bluetooth_serial: ^0.4.0
   permission_handler: ^12.0.3
+  fl_chart: ^1.2.0
+  google_sign_in: 6.2.1
 
 dev_dependencies:
   flutter_test:
@@ -59,13 +61,10 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
+  assets:
+    - assets/terralink.png
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/to/asset-from-package
@@ -86,6 +85,3 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/to/font-from-package

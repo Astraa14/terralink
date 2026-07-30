@@ -10,14 +10,13 @@ A Flutter mobile app for monitoring and controlling a terrarium ecosystem. Terra
 - **Demo mode** — Simulated sensor data so you can explore the UI without hardware
 - **Bluetooth** — Connect to paired SPP Bluetooth serial devices
 - **Alerts** — Configurable threshold warnings per sensor
-- **Analytics** — 5-hour historical trend views
-- **Automation rules** — UI for mist triggers, overheating protection, and night mode (logic in progress)
+- **Analytics** — 5-hour historical trend views with CSV telemetry export functionality
+- **Automation rules** — Full hardware rule engine (Automated Mist Pump, Overheating Extraction Fan, Night Mode) with outbound Bluetooth command transmission (`MIST:ON`, `FAN:ON`, `NIGHT:ON`) and manual relay overrides.
 
 ## Planned
 
-- Full automation rule engine (hardware control)
-- Persistent data storage
-- Improved charts and export
+- Persistent database log storage (SQLite / Hive)
+- Advanced customizable chart graphing & PDF reporting
 
 ## Requirements
 
