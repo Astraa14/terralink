@@ -1,5 +1,5 @@
 name: terra_link
-description: "A Flutter mobile app for monitoring and controlling a terrarium ecosystem with Bluetooth serial sensors, automation rules, and analytics."
+description: "A Flutter mobile app for monitoring and analyzing farm soil health with Bluetooth sensors, soil moisture & NPK analytics, and automated irrigation control."
 homepage: https://github.com/Astraa14/terralink
 repository: https://github.com/Astraa14/terralink
 issue_tracker: https://github.com/Astraa14/terralink/issues

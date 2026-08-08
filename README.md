@@ -2,7 +2,7 @@
 
 > **Work in progress** — This project is under active development. Features, UI, and hardware integration may change.
 
-A Flutter mobile app for monitoring and controlling a terrarium ecosystem. TerraLink connects to microcontroller hardware (e.g. HC-05/HC-06 Bluetooth modules) to display live sensor data and manage automation rules.
+A Flutter mobile app for monitoring and analyzing farm soil status and crop environment health. TerraLink connects to soil sensor microcontrollers (e.g. HC-05/HC-06 Bluetooth modules) to display live soil moisture, NPK composition, pH, electrical conductivity (EC), ambient temperature, and humidity data while executing automated irrigation and fertigation rules.
 
 ## Features (current)
 

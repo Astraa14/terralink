@@ -67,7 +67,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 4),
                   Text(
-                    'Configure your terrarium monitor',
+                    'Configure your farm soil monitor',
                     style: TextStyle(
                       fontSize: 13,
                       color: _C.textMuted,

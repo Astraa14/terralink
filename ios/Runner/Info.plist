@@ -17,9 +17,9 @@
 	<key>CFBundleName</key>
 	<string>terralink</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>TerraLink requires Bluetooth access to connect to terrarium sensor hardware and stream live environmental readings.</string>
+	<string>TerraLink requires Bluetooth access to connect to farm soil sensor hardware and stream live soil health readings.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>TerraLink requires Bluetooth peripheral access to communicate with smart terrarium controllers.</string>
+	<string>TerraLink requires Bluetooth peripheral access to communicate with smart soil monitoring controllers.</string>
 	<key>NSBluetoothCentralUsageDescription</key>
 	<string>TerraLink uses Bluetooth to scan for and connect to nearby sensor modules.</string>
 	<key>CFBundlePackageType</key>
