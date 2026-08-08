@@ -67,6 +67,32 @@ class AuthService extends ChangeNotifier {
     return false;
   }
 
+  Future<bool> signUpWithEmail(String email, String password, String name) async {
+    if (_isLoading) return false;
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      await Future.delayed(const Duration(milliseconds: 600));
+      final displayName = name.trim().isNotEmpty ? name.trim() : email.split('@')[0];
+      _currentUser = UserProfile(
+        uid: "email_user_${email.hashCode}",
+        displayName: displayName,
+        email: email,
+        photoUrl: null,
+      );
+      _isLoading = false;
+      notifyListeners();
+      return true;
+    } catch (e) {
+      debugPrint("Email Sign Up Error: $e");
+    }
+
+    _isLoading = false;
+    notifyListeners();
+    return false;
+  }
+
   Future<bool> signInAsGuest() async {
     if (_isLoading) return false;
     _isLoading = true;

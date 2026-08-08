@@ -14,9 +14,11 @@ class _TerraLinkLoginScreenState extends State<TerraLinkLoginScreen>
     with SingleTickerProviderStateMixin {
   AuthService get _authService => widget.authService;
 
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
+  bool _isSignUp = false;
   LoginMethod _selectedMethod = LoginMethod.guest;
 
   late final AnimationController _fadeCtrl;
@@ -32,6 +34,7 @@ class _TerraLinkLoginScreenState extends State<TerraLinkLoginScreen>
 
   @override
   void dispose() {
+    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _fadeCtrl.dispose();
@@ -215,6 +218,14 @@ class _TerraLinkLoginScreenState extends State<TerraLinkLoginScreen>
     return Column(
       key: const ValueKey('emailFields'),
       children: [
+        if (_isSignUp) ...[
+          _buildTextField(
+            controller: _nameController,
+            label: 'Full Name',
+            icon: Icons.person_outline_rounded,
+          ),
+          const SizedBox(height: 14),
+        ],
         _buildTextField(
           controller: _emailController,
           label: 'Email Address',
@@ -236,13 +247,23 @@ class _TerraLinkLoginScreenState extends State<TerraLinkLoginScreen>
             onPressed: () => setState(() => _isPasswordVisible = !_isPasswordVisible),
           ),
         ),
-        const SizedBox(height: 4),
-        Align(
-          alignment: Alignment.centerRight,
-          child: TextButton(
-            onPressed: () {},
-            child: Text('Forgot password?', style: TextStyle(color: _green.withValues(alpha: 0.85), fontSize: 13)),
-          ),
+        const SizedBox(height: 8),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            TextButton(
+              onPressed: () => setState(() => _isSignUp = !_isSignUp),
+              child: Text(
+                _isSignUp ? 'Already have an account? Sign In' : 'Need an account? Sign Up',
+                style: TextStyle(color: _green.withValues(alpha: 0.9), fontSize: 13, fontWeight: FontWeight.bold),
+              ),
+            ),
+            if (!_isSignUp)
+              TextButton(
+                onPressed: () {},
+                child: Text('Forgot?', style: TextStyle(color: _textSub, fontSize: 13)),
+              ),
+          ],
         ),
       ],
     );
@@ -288,13 +309,13 @@ class _TerraLinkLoginScreenState extends State<TerraLinkLoginScreen>
   Widget _buildLoginButton() {
     final label = switch (_selectedMethod) {
       LoginMethod.google => 'Continue with Google',
-      LoginMethod.email  => 'Sign In',
+      LoginMethod.email  => _isSignUp ? 'Create Account' : 'Sign In',
       LoginMethod.guest  => 'Enter as Guest',
     };
 
     final icon = switch (_selectedMethod) {
       LoginMethod.google => Icons.g_mobiledata_rounded,
-      LoginMethod.email  => Icons.login_rounded,
+      LoginMethod.email  => _isSignUp ? Icons.person_add_alt_1_rounded : Icons.login_rounded,
       LoginMethod.guest  => Icons.explore_outlined,
     };
 
@@ -330,7 +351,7 @@ class _TerraLinkLoginScreenState extends State<TerraLinkLoginScreen>
   // ─────────────────────────────────────────────
   Widget _buildFooter() {
     return Text(
-      '© 2025 TerraLink · Smart Ecosystem Control',
+      '© 2026 TerraLink · Smart Soil Health Monitor',
       style: TextStyle(color: _textSub.withValues(alpha: 0.6), fontSize: 11),
     );
   }
@@ -347,10 +368,21 @@ class _TerraLinkLoginScreenState extends State<TerraLinkLoginScreen>
           _showSnack(context, 'Please enter your email and password.');
           return;
         }
-        await _authService.signInWithEmail(
-          _emailController.text.trim(),
-          _passwordController.text,
-        );
+        if (_isSignUp) {
+          final success = await _authService.signUpWithEmail(
+            _emailController.text.trim(),
+            _passwordController.text,
+            _nameController.text.trim(),
+          );
+          if (success && context.mounted) {
+            _showSnack(context, 'Account created successfully!');
+          }
+        } else {
+          await _authService.signInWithEmail(
+            _emailController.text.trim(),
+            _passwordController.text,
+          );
+        }
       case LoginMethod.guest:
         await _authService.signInAsGuest();
     }
