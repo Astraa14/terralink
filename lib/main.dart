@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'models/app_models.dart';
 import 'services/auth_service.dart';
@@ -9,7 +11,17 @@ import 'services/automation_engine.dart';
 import 'screens/terra_link_login_screen.dart';
 import 'widgets/sensor_chart.dart';
 
-void main() => runApp(const TerraLinkApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    debugPrint("Firebase init notice: $e");
+  }
+  runApp(const TerraLinkApp());
+}
 
 // ─────────────────────────────────────────────────────────────
 //  App-wide colour palette

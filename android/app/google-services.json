@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "855262203450",
+    "project_id": "terralink-e3415",
+    "storage_bucket": "terralink-e3415.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855262203450:android:222777d6a9432d5df52f03",
+        "android_client_info": {
+          "package_name": "com.astral.terralink"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNnXNS6xweKPpqy_rvK-JT_yXKhIo1WXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
