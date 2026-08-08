@@ -1,8 +1,8 @@
 name: terra_link
-description: "A Flutter mobile app for monitoring and controlling a terrarium ecosystem."
-# The following line prevents the package from being accidentally published to
-# pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+description: "A Flutter mobile app for monitoring and controlling a terrarium ecosystem with Bluetooth serial sensors, automation rules, and analytics."
+homepage: https://github.com/Astraa14/terralink
+repository: https://github.com/Astraa14/terralink
+issue_tracker: https://github.com/Astraa14/terralink/issues
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43

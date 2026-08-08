@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
-import 'bluetooth_service.dart';
 
 // ---------------------------------------------------------------------------
 // Models
@@ -141,25 +140,14 @@ class SensorService extends ChangeNotifier {
   Timer? _demoTimer;
   final Random _rng = Random();
 
-  // Bluetooth subscription
-  StreamSubscription<Map<String, double>>? _btSubscription;
-  BluetoothService? _bluetoothService;
-
   // ---------------------------------------------------------------------------
   // Init / dispose
   // ---------------------------------------------------------------------------
   SensorService();
 
-  void attachBluetooth(BluetoothService bt) {
-    _btSubscription?.cancel();
-    _bluetoothService = bt;
-    _btSubscription = bt.parsedDataStream.listen(_onBluetoothData);
-  }
-
   @override
   void dispose() {
     _demoTimer?.cancel();
-    _btSubscription?.cancel();
     super.dispose();
   }
 

@@ -27,7 +27,7 @@ A Flutter mobile app for monitoring and controlling a terrarium ecosystem. Terra
 ## Getting started
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/terrarium_app.git
+git clone https://github.com/Astraa14/terralink.git
 cd terrarium_app
 flutter pub get
 flutter run
@@ -43,16 +43,23 @@ temperature,humidity,npk,soil_moisture
 
 Example: `24.5,58.0,420,280`
 
+## Bluetooth Pairing & Troubleshooting
+
+1. **Initial Pairing**: Pair your HC-05 / HC-06 Bluetooth module in your Android system Bluetooth settings before opening TerraLink (default PIN is usually `1234` or `0000`).
+2. **Permissions**: Ensure Bluetooth and Location permissions are granted when prompted by the app.
+3. **Disconnections**: If connection drops, tap the Bluetooth icon in the top app bar to initiate re-pairing or enable "Auto-Reconnect" in Settings.
+
 ## Tech stack
 
 - Flutter / Dart
 - `flutter_bluetooth_serial` — Bluetooth SPP communication
 - `permission_handler` — Bluetooth and location permissions
+- `fl_chart` — Analytics data charting
 
 ## License
 
-TBD
+This project is licensed under the [MIT License](LICENSE).
 
 ## Status
 
-This repository is public for portfolio and collaboration purposes. Expect breaking changes until v1.0.
+TerraLink is pre-configured for publication (v1.0.0).

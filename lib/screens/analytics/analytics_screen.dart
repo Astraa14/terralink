@@ -226,13 +226,13 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(_C.icons[_selectedSensor],
-                              size: 36, color: color.withOpacity(0.3)),
+                              size: 36, color: color.withValues(alpha: 0.3)),
                           const SizedBox(height: 8),
                           Text(
                             'No data yet',
                             style: TextStyle(
                               fontSize: 13,
-                              color: color.withOpacity(0.5),
+                              color: color.withValues(alpha: 0.5),
                               fontWeight: FontWeight.w500,
                             ),
                           ),

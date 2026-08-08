@@ -7,15 +7,21 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Terrarium App</string>
+	<string>TerraLink</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<string>com.astral.terralink</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>terrarium_app</string>
+	<string>terralink</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>TerraLink requires Bluetooth access to connect to terrarium sensor hardware and stream live environmental readings.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>TerraLink requires Bluetooth peripheral access to communicate with smart terrarium controllers.</string>
+	<key>NSBluetoothCentralUsageDescription</key>
+	<string>TerraLink uses Bluetooth to scan for and connect to nearby sensor modules.</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
