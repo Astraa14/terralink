@@ -10,7 +10,7 @@ class ConnectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bt = context.watch<BluetoothService>();
+    final bt = context.watch<BluetoothManagerService>();
     final sensor = context.watch<SensorService>();
     final isConnected = bt.isConnected;
     final isDemoMode = sensor.demoMode;
@@ -224,12 +224,12 @@ class ConnectionCard extends StatelessWidget {
     );
   }
 
-  String _statusText(BluetoothService bt, bool demo) {
+  String _statusText(BluetoothManagerService bt, bool demo) {
     if (demo) return 'Simulating sensor data';
     return bt.statusLabel;
   }
 
-  Color _indicatorColor(BluetoothService bt, bool demo) {
+  Color _indicatorColor(BluetoothManagerService bt, bool demo) {
     if (demo) return const Color(0xFF4CAF50);
     switch (bt.state) {
       case BluetoothConnectionState.connected:
@@ -244,7 +244,7 @@ class ConnectionCard extends StatelessWidget {
     }
   }
 
-  String _indicatorLabel(BluetoothService bt, bool demo) {
+  String _indicatorLabel(BluetoothManagerService bt, bool demo) {
     if (demo) return 'LIVE';
     switch (bt.state) {
       case BluetoothConnectionState.connected:
@@ -260,7 +260,7 @@ class ConnectionCard extends StatelessWidget {
     }
   }
 
-  void _showDeviceSheet(BuildContext context, BluetoothService bt) {
+  void _showDeviceSheet(BuildContext context, BluetoothManagerService bt) {
     bt.startScan();
     showModalBottomSheet(
       context: context,
@@ -344,7 +344,7 @@ class _ActionButton extends StatelessWidget {
 // Device selection bottom sheet
 // ---------------------------------------------------------------------------
 class _DeviceSelectionSheet extends StatefulWidget {
-  final BluetoothService bt;
+  final BluetoothManagerService bt;
   const _DeviceSelectionSheet({required this.bt});
 
   @override

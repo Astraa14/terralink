@@ -362,7 +362,10 @@ class _TerraLinkLoginScreenState extends State<TerraLinkLoginScreen>
   Future<void> _handleLogin(BuildContext context) async {
     switch (_selectedMethod) {
       case LoginMethod.google:
-        await _authService.signInWithGoogle();
+        final success = await _authService.signInWithGoogle();
+        if (!success && context.mounted) {
+          _showSnack(context, _authService.lastError ?? 'Google Sign-In failed.');
+        }
       case LoginMethod.email:
         if (_emailController.text.trim().isEmpty || _passwordController.text.isEmpty) {
           _showSnack(context, 'Please enter your email and password.');
@@ -374,14 +377,21 @@ class _TerraLinkLoginScreenState extends State<TerraLinkLoginScreen>
             _passwordController.text,
             _nameController.text.trim(),
           );
-          if (success && context.mounted) {
-            _showSnack(context, 'Account created successfully!');
+          if (context.mounted) {
+            if (success) {
+              _showSnack(context, 'Account created successfully!');
+            } else {
+              _showSnack(context, _authService.lastError ?? 'Sign up failed.');
+            }
           }
         } else {
-          await _authService.signInWithEmail(
+          final success = await _authService.signInWithEmail(
             _emailController.text.trim(),
             _passwordController.text,
           );
+          if (!success && context.mounted) {
+            _showSnack(context, _authService.lastError ?? 'Sign in failed.');
+          }
         }
       case LoginMethod.guest:
         await _authService.signInAsGuest();

@@ -42,4 +42,18 @@ class UserProfile {
     this.email,
     this.photoUrl,
   });
+
+  UserProfile copyWith({
+    String? uid,
+    String? displayName,
+    String? email,
+    String? photoUrl,
+  }) {
+    return UserProfile(
+      uid: uid ?? this.uid,
+      displayName: displayName ?? this.displayName,
+      email: email ?? this.email,
+      photoUrl: photoUrl ?? this.photoUrl,
+    );
+  }
 }

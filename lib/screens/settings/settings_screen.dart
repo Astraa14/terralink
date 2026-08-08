@@ -41,7 +41,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sensor = context.watch<SensorService>();
-    final bt = context.watch<BluetoothService>();
+    final bt = context.watch<BluetoothManagerService>();
 
     return SafeArea(
       bottom: false,
