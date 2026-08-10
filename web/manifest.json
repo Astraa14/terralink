@@ -1,11 +1,11 @@
 {
-    "name": "terrarium_app",
-    "short_name": "terrarium_app",
+    "name": "TerraLink",
+    "short_name": "TerraLink",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#1F2E22",
+    "theme_color": "#1F2E22",
+    "description": "TerraLink — Smart farm soil health monitoring with Bluetooth sensors, soil moisture & NPK analytics, and automated irrigation control.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

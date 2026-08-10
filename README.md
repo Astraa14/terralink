@@ -15,7 +15,8 @@ A Flutter mobile app for monitoring and analyzing farm soil status and crop envi
 
 ## Planned
 
-- Persistent database log storage (SQLite / Hive)
+- Supabase authentication (email, Google, guest)
+- Persistent database log storage
 - Advanced customizable chart graphing & PDF reporting
 
 ## Requirements

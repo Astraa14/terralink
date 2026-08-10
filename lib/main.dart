@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'config/supabase_config.dart';
 import 'models/app_models.dart';
 import 'services/auth_service.dart';
 import 'services/bluetooth_service.dart';
@@ -11,15 +11,21 @@ import 'services/automation_engine.dart';
 import 'screens/terra_link_login_screen.dart';
 import 'widgets/sensor_chart.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  try {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
+
+  if (SupabaseConfig.isConfigured) {
+    await Supabase.initialize(
+      url: SupabaseConfig.url,
+      publishableKey: SupabaseConfig.publishableKey,
     );
-  } catch (e) {
-    debugPrint("Firebase init notice: $e");
+  } else {
+    debugPrint(
+      'Supabase not configured — paste your URL and key in '
+      'lib/config/supabase_config.dart',
+    );
   }
+
   runApp(const TerraLinkApp());
 }
 
