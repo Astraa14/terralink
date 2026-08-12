@@ -6,11 +6,13 @@ enum TerraBadgeVariant { primary, warning, critical, info, outline }
 class TerraBadge extends StatelessWidget {
   final String label;
   final TerraBadgeVariant variant;
+  final IconData? icon;
 
   const TerraBadge({
     super.key,
     required this.label,
     this.variant = TerraBadgeVariant.primary,
+    this.icon,
   });
 
   @override
@@ -22,14 +24,14 @@ class TerraBadge extends StatelessWidget {
           AppColors.primary.withValues(alpha: 0.3),
         ),
       TerraBadgeVariant.warning => (
-          AppColors.warning.withValues(alpha: 0.2),
-          AppColors.warning,
-          AppColors.warning.withValues(alpha: 0.3),
+          AppColors.statusYellow.withValues(alpha: 0.22),
+          AppColors.statusYellow,
+          AppColors.statusYellow.withValues(alpha: 0.35),
         ),
       TerraBadgeVariant.critical => (
-          AppColors.critical.withValues(alpha: 0.2),
-          AppColors.critical,
-          AppColors.critical.withValues(alpha: 0.3),
+          AppColors.statusRed.withValues(alpha: 0.22),
+          AppColors.statusRed,
+          AppColors.statusRed.withValues(alpha: 0.4),
         ),
       TerraBadgeVariant.info => (
           AppColors.info.withValues(alpha: 0.2),
@@ -50,13 +52,22 @@ class TerraBadge extends StatelessWidget {
         borderRadius: BorderRadius.circular(999),
         border: Border.all(color: border),
       ),
-      child: Text(
-        label,
-        style: TextStyle(
-          color: fg,
-          fontSize: 12,
-          fontWeight: FontWeight.w500,
-        ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (icon != null) ...[
+            Icon(icon, color: fg, size: 12),
+            const SizedBox(width: 4),
+          ],
+          Text(
+            label,
+            style: TextStyle(
+              color: fg,
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
       ),
     );
   }

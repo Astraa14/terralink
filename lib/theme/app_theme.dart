@@ -29,19 +29,25 @@ class AppTheme {
       ),
       sliderTheme: SliderThemeData(
         activeTrackColor: AppColors.primary,
-        inactiveTrackColor: AppColors.muted,
+        inactiveTrackColor: AppColors.softTan.withValues(alpha: 0.18),
         thumbColor: AppColors.primary,
         overlayColor: AppColors.primary.withValues(alpha: 0.12),
       ),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          minimumSize: const Size(48, 48),
+          tapTargetSize: MaterialTapTargetSize.padded,
+        ),
+      ),
       snackBarTheme: SnackBarThemeData(
-        backgroundColor: const Color(0xFF18181B),
+        backgroundColor: AppColors.instrument,
         contentTextStyle: textTheme.bodyMedium?.copyWith(color: AppColors.foreground),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: AppColors.background,
+        fillColor: AppColors.instrument,
         labelStyle: const TextStyle(color: AppColors.mutedForeground, fontSize: 14),
         hintStyle: const TextStyle(color: AppColors.mutedForeground),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),

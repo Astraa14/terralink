@@ -178,10 +178,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   String get _healthLabel {
     final s = _healthScore;
-    if (s >= 80) return 'Excellent';
-    if (s >= 60) return 'Good';
-    if (s >= 40) return 'Fair';
-    return 'Poor';
+    if (s >= 85) return 'Thriving';
+    if (s >= 65) return 'Healthy';
+    if (s >= 40) return 'Stressed';
+    return 'Critical';
   }
 
   String _timeGreeting() {
@@ -192,9 +192,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   String get _connectionStatus {
-    if (_btService.isConnected) return 'Connected';
-    if (_isDemoMode) return 'Connected • Demo Mode';
-    return 'Offline / Simulation';
+    if (_btService.isConnected) return 'Live sensor';
+    if (_isDemoMode) return 'Demo field';
+    return 'Offline';
   }
 
   void _refreshHistory() {

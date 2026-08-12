@@ -13,10 +13,10 @@ class TerraBottomNav extends StatelessWidget {
   });
 
   static const _items = [
-    (Icons.home_outlined, Icons.home_rounded, 'Home'),
-    (Icons.show_chart_outlined, Icons.show_chart_rounded, 'Analytics'),
-    (Icons.tune_outlined, Icons.tune_rounded, 'Automation'),
-    (Icons.settings_outlined, Icons.settings_rounded, 'Settings'),
+    (Icons.agriculture_outlined, Icons.agriculture_rounded, 'Home'),
+    (Icons.query_stats_outlined, Icons.query_stats_rounded, 'Analytics'),
+    (Icons.water_drop_outlined, Icons.water_drop_rounded, 'Automation'),
+    (Icons.construction_outlined, Icons.construction_rounded, 'Settings'),
   ];
 
   @override
@@ -32,7 +32,7 @@ class TerraBottomNav extends StatelessWidget {
               colors: [
                 AppColors.background,
                 AppColors.background.withValues(alpha: 0.95),
-                AppColors.background.withValues(alpha: 0),
+                AppColors.richSoil.withValues(alpha: 0),
               ],
             ),
             border: Border(
@@ -86,7 +86,7 @@ class TerraBottomNav extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w500,
-                            letterSpacing: 0.5,
+                            letterSpacing: 0,
                             color: isActive ? AppColors.primary : AppColors.mutedForeground,
                           ),
                         ),

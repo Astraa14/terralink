@@ -34,17 +34,18 @@ class GlassCard extends StatelessWidget {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Colors.white.withValues(alpha: 0.05),
-                      Colors.white.withValues(alpha: 0.01),
+                      Colors.white.withValues(alpha: 0.085),
+                      AppColors.softTan.withValues(alpha: 0.025),
+                      Colors.black.withValues(alpha: 0.08),
                     ],
                   )
                 : null,
-            color: gradient ? null : Colors.white.withValues(alpha: 0.03),
+            color: gradient ? null : Colors.white.withValues(alpha: 0.055),
             borderRadius: radius,
-            border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.14)),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.1),
+                color: Colors.black.withValues(alpha: 0.22),
                 blurRadius: 30,
                 offset: const Offset(0, 4),
               ),
@@ -92,9 +93,9 @@ class GlassSurface extends StatelessWidget {
         child: Container(
           padding: padding,
           decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha: 0.03),
+            color: Colors.white.withValues(alpha: 0.065),
             borderRadius: radius,
-            border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.13)),
           ),
           child: child,
         ),

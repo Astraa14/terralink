@@ -3,12 +3,16 @@ import '../../theme/app_colors.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title;
+  final IconData? icon;
+  final String? subtitle;
   final String? actionLabel;
   final VoidCallback? onAction;
 
   const SectionHeader({
     super.key,
     required this.title,
+    this.icon,
+    this.subtitle,
     this.actionLabel,
     this.onAction,
   });
@@ -18,12 +22,51 @@ class SectionHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          title,
-          style: const TextStyle(
-            color: AppColors.foreground,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
+        Expanded(
+          child: Row(
+            children: [
+              if (icon != null) ...[
+                Container(
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    color: AppColors.softTan.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(AppColors.radiusSm),
+                    border: Border.all(
+                      color: AppColors.softTan.withValues(alpha: 0.18),
+                    ),
+                  ),
+                  child: Icon(icon, color: AppColors.softTan, size: 18),
+                ),
+                const SizedBox(width: 10),
+              ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        color: AppColors.foreground,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    if (subtitle != null) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        subtitle!,
+                        style: const TextStyle(
+                          color: AppColors.mutedForeground,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
         if (actionLabel != null)
@@ -31,9 +74,9 @@ class SectionHeader extends StatelessWidget {
             onPressed: onAction,
             style: TextButton.styleFrom(
               foregroundColor: AppColors.primary,
-              padding: EdgeInsets.zero,
-              minimumSize: Size.zero,
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              minimumSize: const Size(48, 44),
+              tapTargetSize: MaterialTapTargetSize.padded,
             ),
             child: Text(
               actionLabel!,
@@ -69,15 +112,16 @@ class PillSelector extends StatelessWidget {
           borderRadius: BorderRadius.circular(999),
           border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: List.generate(options.length, (i) {
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: List.generate(options.length, (i) {
             final selected = i == selectedIndex;
             return GestureDetector(
               onTap: () => onSelected(i),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                constraints: const BoxConstraints(minHeight: 40),
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(
                   color: selected
                       ? AppColors.primary.withValues(alpha: 0.2)
@@ -111,6 +155,7 @@ class PillSelector extends StatelessWidget {
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                constraints: const BoxConstraints(minHeight: 44),
                 decoration: BoxDecoration(
                   color: selected ? AppColors.primary : Colors.transparent,
                   borderRadius: BorderRadius.circular(999),
