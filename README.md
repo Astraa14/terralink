@@ -6,7 +6,7 @@
 
 **Smart soil monitoring for modern farms.**
 
-Live soil intelligence — moisture, pH, NPK, conductivity, temperature and humidity — streamed from field sensors to a beautiful dark dashboard, with automated irrigation and fertigation rules.
+Live soil intelligence, moisture, pH, NPK, conductivity, temperature and humidity streamed from field sensors to a beautiful dark dashboard, with automated irrigation and fertigation rules.
 
 [![Live demo](https://img.shields.io/badge/-Live%20Demo-22C55E?style=for-the-badge&logo=vercel&logoColor=white)](https://terralink-monitor.vercel.app)
 [![Made with Flutter](https://img.shields.io/badge/Made%20with-Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
