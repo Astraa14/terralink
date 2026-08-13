@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../theme/app_colors.dart';
-import 'glass_card.dart';
 import 'terra_badge.dart';
 
 enum FarmMetricSeverity { thriving, healthy, monitor, attention, critical }
@@ -97,29 +96,22 @@ class _SensorMetricCardState extends State<SensorMetricCard> {
             duration: const Duration(milliseconds: 180),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppColors.radiusLg),
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  widget.accentColor.withValues(alpha: 0.12),
-                  AppColors.instrument.withValues(alpha: 0.74),
-                ],
-              ),
+              color: AppColors.instrument,
               border: Border.all(
                 color: _expanded
-                    ? widget.accentColor.withValues(alpha: 0.45)
-                    : widget.accentColor.withValues(alpha: 0.18),
+                    ? widget.accentColor.withValues(alpha: 0.55)
+                    : Colors.white.withValues(alpha: 0.09),
+                width: _expanded ? 1.4 : 1,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: widget.accentColor.withValues(alpha: _expanded ? 0.18 : 0.08),
-                  blurRadius: _expanded ? 26 : 16,
-                  offset: const Offset(0, 8),
+                  color: Colors.black.withValues(alpha: 0.3),
+                  blurRadius: _expanded ? 20 : 12,
+                  offset: const Offset(0, 6),
                 ),
               ],
             ),
-            child: GlassCard(
-              gradient: false,
+            child: Padding(
               padding: const EdgeInsets.all(14),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,7 +183,7 @@ class _SensorMetricCardState extends State<SensorMetricCard> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            color: _severityColor,
+                            color: AppColors.mutedForeground,
                             fontSize: 11,
                             fontWeight: FontWeight.w700,
                           ),

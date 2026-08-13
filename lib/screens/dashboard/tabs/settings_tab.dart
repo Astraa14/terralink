@@ -543,8 +543,8 @@ class _SettingsLink extends StatelessWidget {
             Expanded(
               child: Text(
                 label,
-                style: TextStyle(
-                  color: color == AppColors.mutedForeground ? AppColors.foreground : color,
+                style: const TextStyle(
+                  color: AppColors.foreground,
                   fontSize: 14,
                   fontWeight: FontWeight.w800,
                 ),

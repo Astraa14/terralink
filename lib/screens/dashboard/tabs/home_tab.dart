@@ -589,7 +589,7 @@ class _ConnectionButton extends StatelessWidget {
             Text(
               label,
               style: TextStyle(
-                color: color,
+                color: AppColors.foreground,
                 fontSize: 12,
                 fontWeight: FontWeight.w800,
               ),
@@ -649,7 +649,7 @@ class _AlertBanner extends StatelessWidget {
                 Text(
                   alert.action,
                   style: TextStyle(
-                    color: alert.color,
+                    color: AppColors.mutedForeground,
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
                   ),

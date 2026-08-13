@@ -157,7 +157,7 @@ class HealthScoreCard extends StatelessWidget {
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                color: _scoreColor,
+                                color: AppColors.mutedForeground,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700,
                               ),
@@ -288,9 +288,9 @@ class _FactorChip extends StatelessWidget {
       constraints: const BoxConstraints(minHeight: 36),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       decoration: BoxDecoration(
-        color: factor.color.withValues(alpha: 0.12),
+        color: Colors.black.withValues(alpha: 0.35),
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: factor.color.withValues(alpha: 0.24)),
+        border: Border.all(color: factor.color.withValues(alpha: 0.4)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -300,7 +300,7 @@ class _FactorChip extends StatelessWidget {
           Text(
             '${factor.label}: ${factor.status}',
             style: TextStyle(
-              color: factor.color,
+              color: AppColors.foreground,
               fontSize: 12,
               fontWeight: FontWeight.w700,
             ),

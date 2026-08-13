@@ -17,40 +17,21 @@ class TerraBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final (bg, fg, border) = switch (variant) {
-      TerraBadgeVariant.primary => (
-          AppColors.primary.withValues(alpha: 0.2),
-          AppColors.primary,
-          AppColors.primary.withValues(alpha: 0.3),
-        ),
-      TerraBadgeVariant.warning => (
-          AppColors.statusYellow.withValues(alpha: 0.22),
-          AppColors.statusYellow,
-          AppColors.statusYellow.withValues(alpha: 0.35),
-        ),
-      TerraBadgeVariant.critical => (
-          AppColors.statusRed.withValues(alpha: 0.22),
-          AppColors.statusRed,
-          AppColors.statusRed.withValues(alpha: 0.4),
-        ),
-      TerraBadgeVariant.info => (
-          AppColors.info.withValues(alpha: 0.2),
-          AppColors.info,
-          AppColors.info.withValues(alpha: 0.3),
-        ),
-      TerraBadgeVariant.outline => (
-          Colors.transparent,
-          AppColors.mutedForeground,
-          AppColors.border,
-        ),
+    final fg = switch (variant) {
+      TerraBadgeVariant.primary => AppColors.primary,
+      TerraBadgeVariant.warning => AppColors.statusYellow,
+      TerraBadgeVariant.critical => AppColors.statusRed,
+      TerraBadgeVariant.info => AppColors.info,
+      TerraBadgeVariant.outline => AppColors.mutedForeground,
     };
+    final isOutline = variant == TerraBadgeVariant.outline;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: bg,
+        color: isOutline ? Colors.transparent : Colors.black.withValues(alpha: 0.45),
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: border),
+        border: Border.all(color: isOutline ? AppColors.border : fg.withValues(alpha: 0.4)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -62,7 +43,7 @@ class TerraBadge extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              color: fg,
+              color: isOutline ? AppColors.mutedForeground : AppColors.foreground,
               fontSize: 12,
               fontWeight: FontWeight.w600,
             ),
