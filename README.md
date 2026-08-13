@@ -1,29 +1,64 @@
+<div align="center">
+
+<img src="assets/terralink.png" alt="TerraLink" width="120" height="120" />
+
 # TerraLink
 
-> **Work in progress** — This project is under active development. Features, UI, and hardware integration may change.
+**Smart soil monitoring for modern farms.**
 
-A Flutter mobile app for monitoring and analyzing farm soil status and crop environment health. TerraLink connects to soil sensor microcontrollers (e.g. HC-05/HC-06 Bluetooth modules) to display live soil moisture, NPK composition, pH, electrical conductivity (EC), ambient temperature, and humidity data while executing automated irrigation and fertigation rules.
+Live soil intelligence — moisture, pH, NPK, conductivity, temperature and humidity — streamed from field sensors to a beautiful dark dashboard, with automated irrigation and fertigation rules.
 
-## Features (current)
+[![Live demo](https://img.shields.io/badge/-Live%20Demo-22C55E?style=for-the-badge&logo=vercel&logoColor=white)](https://terralink-monitor.vercel.app)
+[![Made with Flutter](https://img.shields.io/badge/Made%20with-Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-- **Dashboard** — Real-time temperature, humidity, soil NPK, and soil moisture readings
-- **Demo mode** — Simulated sensor data so you can explore the UI without hardware
-- **Bluetooth** — Connect to paired SPP Bluetooth serial devices
-- **Alerts** — Configurable threshold warnings per sensor
-- **Analytics** — 5-hour historical trend views with CSV telemetry export functionality
-- **Automation rules** — Full hardware rule engine (Automated Mist Pump, Overheating Extraction Fan, Night Mode) with outbound Bluetooth command transmission (`MIST:ON`, `FAN:ON`, `NIGHT:ON`) and manual relay overrides.
+</div>
 
-## Planned
+---
 
-- Supabase authentication (email, Google, guest)
-- Persistent database log storage
-- Advanced customizable chart graphing & PDF reporting
+## What it does
 
-## Requirements
+TerraLink pairs a soil sensor module (e.g. HC-05 / HC-06 Bluetooth) with your phone to turn raw field readings into decisions you can act on.
 
-- [Flutter SDK](https://docs.flutter.dev/get-started/install) (Dart ^3.12)
-- Android device/emulator (Bluetooth features require a physical device)
-- Optional: HC-05/HC-06 module paired with your phone for live data
+- **Soil Chemistry** — moisture, NPK, pH and electrical conductivity (EC) with reference bands and per-factor health status.
+- **Environment** — ambient temperature and humidity for crop canopy conditions.
+- **Health Score** — a single 0–100 soil-health score derived from your live readings, with clear factor breakdowns.
+- **Automation engine** — configurable rules (irrigation, extraction fan, night optimization) that send real commands to equipment over Bluetooth (`MIST:ON`, `FAN:ON`, `NIGHT:ON`).
+- **Analytics** — historical trend charts with 1H / 6H / 24H / 7D ranges.
+- **Demo mode** — explore the full experience with simulated field data, no hardware required.
+- **Auth** — sign in with Google, email, or as a guest (Supabase).
+
+## Try it
+
+`https://terralink-monitor.vercel.app` — the fully responsive web build. The full app also runs on Android, iOS, Windows, macOS and Linux from the Flutter SDK.
+
+## How data flows
+
+```
+Soil sensors ──► MCU (Arduino/ESP) ──► HC-05/HC-06 ──► TerraLink
+   moisture                                              │
+   NPK / pH / EC                                         │  dashboard + health score
+   temperature / humidity ── CSV line ───────────────────┤  automation rules
+                                                         ▼
+                                              Equipment commands (MIST/FAN/NIGHT)
+```
+
+Data arrives as newline-terminated CSV over Bluetooth SPP:
+
+```
+temperature,humidity,npk,soil_moisture      # e.g. 24.5,58.0,420,280
+```
+
+## Tech stack
+
+| Layer | Technology |
+| --- | --- |
+| Framework | Flutter / Dart |
+| Charts | [fl_chart](https://pub.dev/packages/fl_chart) |
+| Bluetooth | [flutter_bluetooth_serial](https://pub.dev/packages/flutter_bluetooth_serial) |
+| Permissions | `permission_handler` |
+| Auth | Supabase (email, Google, guest) |
+| Web hosting | Vercel |
 
 ## Getting started
 
@@ -34,33 +69,8 @@ flutter pub get
 flutter run
 ```
 
-## Hardware data format
-
-When connected via Bluetooth, the app expects newline-terminated CSV:
-
-```
-temperature,humidity,npk,soil_moisture
-```
-
-Example: `24.5,58.0,420,280`
-
-## Bluetooth Pairing & Troubleshooting
-
-1. **Initial Pairing**: Pair your HC-05 / HC-06 Bluetooth module in your Android system Bluetooth settings before opening TerraLink (default PIN is usually `1234` or `0000`).
-2. **Permissions**: Ensure Bluetooth and Location permissions are granted when prompted by the app.
-3. **Disconnections**: If connection drops, tap the Bluetooth icon in the top app bar to initiate re-pairing or enable "Auto-Reconnect" in Settings.
-
-## Tech stack
-
-- Flutter / Dart
-- `flutter_bluetooth_serial` — Bluetooth SPP communication
-- `permission_handler` — Bluetooth and location permissions
-- `fl_chart` — Analytics data charting
+To pair with real hardware: connect the HC-05/HC-06 module in your system Bluetooth settings first (default PIN is usually `1234` or `0000`), then tap the Bluetooth indicator in the app. Web builds run in demo mode (Bluetooth is unavailable in browsers).
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
-
-## Status
-
-TerraLink is pre-configured for publication (v1.0.0).
+Released under the [MIT License](LICENSE).
